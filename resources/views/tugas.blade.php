@@ -16,8 +16,8 @@
 
     <!-- JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
     <style>
         body {
@@ -25,151 +25,184 @@
         }
     </style>
 </head>
-    <body class="antialiased bg-gray-100 dark:bg-gray-900 relative flex items-top justify-center min-h-screen sm:items-center py-4 sm:pt-0">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <div class="flex justify-center">
-                        <img src="img/asset/gameku.png" alt="Logo Gameku" width="250" title="Logo Gameku">
-                    </div>
-                    <div class="card mt-3">
-                        <div class="card-body">
-                            <h4 class="text-center font-weight-bold">Gameku | New Character</h4>
-                            <div class="text-center font-semibold text-gray-1000 text-sm">Tugas PBKK B</div>
-                            <div class="text-center font-semibold text-gray-1000 text-sm">Raul Ilma Rajasa | 5025201076</div>
-                            @if (count($errors) > 0)
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            @endif
-                             <!-- form validasi -->
-                            <form action="/proses-tugas" method="post" enctype="multipart/form-data">
-                                {{ csrf_field() }}
-                                        <div class="form-group">
-                                            <label for="nama" class="font-weight-bold">Nama Karakter</label>
-                                            <input class="form-control" type="text" name="nama" value="{{ old('nama') }}" class="@error('nama') is-invalid @enderror">
-                                            @error('nama')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                               <label for="weapons" class="font-weight-bold">Keterampilan Senjata</label>
-                                               <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="Pistol" id="Pistol" name="weapons[]">
-                                                    <label class="form-check-label" for="Pistol">
-                                                        Pistol
-                                                    </label>
-                                                </div>
-                                               <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="Sniper Riffle" id="Sniper Riffle" name="weapons[]">
-                                                    <label class="form-check-label" for="Sniper Riffle">
-                                                        Sniper Riffle
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="Assault Riffle" id="Assault Riffle" name="weapons[]">
-                                                    <label class="form-check-label" for="Assault Riffle">
-                                                        Assault Riffle
-                                                    </label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="SMG" id="SMG" name="weapons[]">
-                                                    <label class="form-check-label" for="SMG">
-                                                        SMG
-                                                    </label>
-                                                </div>
-                                                <div class="form-check" class="@error('weapons') is-invalid @enderror">
-                                                    <input class="form-check-input" type="checkbox" value="Shotgun" id="Shotgun" name="weapons[]">
-                                                    <label class="form-check-label" for="Shotgun">
-                                                        Shotgun
-                                                    </label>
-                                                </div>
-                                                @error('weapons')
-                                                       <div class="alert alert-danger">{{ $message }}</div>
-                                               @enderror
-                                        </div>
-                                        <div class="form-group">
-                                                <label for="gender" class="font-weight-bold">Gender</label>
-                                                <div>
-                                                    <input type="radio" value="Male" id="male" name="gender">
-                                                    <label for="male">Male</label>
-                                                    <input type="radio" class="@error('gender') is-invalid @enderror" value="Female" id="female" name="gender">
-                                                    <label for="female">Female</label>
-                                                    @error('gender')
-                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                         </div>
-                                         <div class="form-group">
-                                            <label for="skill" class="font-weight-bold">Special Skill</label>
-                                            <div>
-                                                <input type="radio" value="Endurance" id="endurance" name="skill">
-                                                <label for="endurance">Endurance</label>
-                                                <input type="radio" class="@error('skill') is-invalid @enderror" value="Hypermovement" id="hypermovement" name="skill">
-                                                <label for="hypermovement">Hypermovement</label>
-                                                <input type="radio" class="@error('skill') is-invalid @enderror" value="Immunity" id="immunity" name="skill">
-                                                <label for="immunity">Immunity</label>
-                                                @error('skill')
+    <body class="antialiased">
+        
+        <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+            <div class="container-fluid">
+              <a class="navbar-brand text-light" href="#">Techiro Article</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active text-light" aria-current="page" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-light" href="/input">Input-Formulir</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-light" href="/formulir">Form Guest</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-light" href="/tugas">Tugas Form</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-light" href="/article">Article</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-light" href="/categories">Category</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <div class="bg-gray-100 dark:bg-gray-900 relative flex items-top justify-center min-h-screen sm:items-center py-4 sm:pt-0">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="flex justify-center">
+                            <img src="img/asset/gameku.png" alt="Logo Gameku" width="250" title="Logo Gameku">
+                        </div>
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <h4 class="text-center font-weight-bold">Gameku | New Character</h4>
+                                <div class="text-center font-semibold text-gray-1000 text-sm">Tugas PBKK B</div>
+                                <div class="text-center font-semibold text-gray-1000 text-sm">Raul Ilma Rajasa | 5025201076</div>
+                                @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @endif
+                                 <!-- form validasi -->
+                                <form action="/proses-tugas" method="post" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                            <div class="form-group">
+                                                <label for="nama" class="font-weight-bold">Nama Karakter</label>
+                                                <input class="form-control" type="text" name="nama" value="{{ old('nama') }}" class="@error('nama') is-invalid @enderror">
+                                                @error('nama')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                        </div>
-                                         <div class="form-group">
-                                            <label for="speed" class="font-weight-bold">Kecepatan Pergerakan</label>
-                                            <input class="form-control" type="text" name="speed" value="{{ old('speed') }}" class="@error('speed') is-invalid @enderror">
-                                            @error('speed')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                         <div class="form-group">
-                                            <label for="def" class="font-weight-bold">Tingkat Pertahanan</label>
-                                            <input class="form-control" type="text" name="def" value="{{ old('def') }}" class="@error('def') is-invalid @enderror">
-                                            @error('def')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                         <div class="form-group">
-                                            <label for="atk" class="font-weight-bold">Akurasi Penyerangan</label>
-                                            <input class="form-control" type="text" name="atk" value="{{ old('atk') }}" class="@error('atk') is-invalid @enderror">
-                                            @error('atk')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="gambar" class="font-weight-bold">Gambar</label>
-                                            <input class="form-control-file" id = "gambar" type="file" value="{{ old('gambar') }}" name="gambar" accept="image/png, image/jpg, image/jpeg" class="@error('gambar') is-invalid @enderror"/>
-                                            @error('gambar')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                        <input type="submit" class="btn btn-primary btn-block" value="Proses"/>
-                            </form>
- 
-                        </div>
-                    </div>
-                    <div class="flex justify-center mt-2 mb-5 sm:items-center sm:justify-between">
-                        <div class="text-center text-sm text-gray-500 sm:text-left">
-                            <div class="flex items-center">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="-mt-px w-5 h-5 text-gray-400">
-                                    <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                                </svg>
-                                <a href="https://raulilma.github.io" class="ml-1">
-                                    Raul Ilma Rajasa
-                                </a>
+                                            <div class="form-group">
+                                                   <label for="weapons" class="font-weight-bold">Keterampilan Senjata</label>
+                                                   <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="Pistol" id="Pistol" name="weapons[]">
+                                                        <label class="form-check-label" for="Pistol">
+                                                            Pistol
+                                                        </label>
+                                                    </div>
+                                                   <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="Sniper Riffle" id="Sniper Riffle" name="weapons[]">
+                                                        <label class="form-check-label" for="Sniper Riffle">
+                                                            Sniper Riffle
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="Assault Riffle" id="Assault Riffle" name="weapons[]">
+                                                        <label class="form-check-label" for="Assault Riffle">
+                                                            Assault Riffle
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="SMG" id="SMG" name="weapons[]">
+                                                        <label class="form-check-label" for="SMG">
+                                                            SMG
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check" class="@error('weapons') is-invalid @enderror">
+                                                        <input class="form-check-input" type="checkbox" value="Shotgun" id="Shotgun" name="weapons[]">
+                                                        <label class="form-check-label" for="Shotgun">
+                                                            Shotgun
+                                                        </label>
+                                                    </div>
+                                                    @error('weapons')
+                                                           <div class="alert alert-danger">{{ $message }}</div>
+                                                   @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                    <label for="gender" class="font-weight-bold">Gender</label>
+                                                    <div>
+                                                        <input type="radio" value="Male" id="male" name="gender">
+                                                        <label for="male">Male</label>
+                                                        <input type="radio" class="@error('gender') is-invalid @enderror" value="Female" id="female" name="gender">
+                                                        <label for="female">Female</label>
+                                                        @error('gender')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                             </div>
+                                             <div class="form-group">
+                                                <label for="skill" class="font-weight-bold">Special Skill</label>
+                                                <div>
+                                                    <input type="radio" value="Endurance" id="endurance" name="skill">
+                                                    <label for="endurance">Endurance</label>
+                                                    <input type="radio" class="@error('skill') is-invalid @enderror" value="Hypermovement" id="hypermovement" name="skill">
+                                                    <label for="hypermovement">Hypermovement</label>
+                                                    <input type="radio" class="@error('skill') is-invalid @enderror" value="Immunity" id="immunity" name="skill">
+                                                    <label for="immunity">Immunity</label>
+                                                    @error('skill')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="speed" class="font-weight-bold">Kecepatan Pergerakan</label>
+                                                <input class="form-control" type="text" name="speed" value="{{ old('speed') }}" class="@error('speed') is-invalid @enderror">
+                                                @error('speed')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="def" class="font-weight-bold">Tingkat Pertahanan</label>
+                                                <input class="form-control" type="text" name="def" value="{{ old('def') }}" class="@error('def') is-invalid @enderror">
+                                                @error('def')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                             <div class="form-group">
+                                                <label for="atk" class="font-weight-bold">Akurasi Penyerangan</label>
+                                                <input class="form-control" type="text" name="atk" value="{{ old('atk') }}" class="@error('atk') is-invalid @enderror">
+                                                @error('atk')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="gambar" class="font-weight-bold">Gambar</label>
+                                                <input class="form-control-file" id = "gambar" type="file" value="{{ old('gambar') }}" name="gambar" accept="image/png, image/jpg, image/jpeg" class="@error('gambar') is-invalid @enderror"/>
+                                                @error('gambar')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <input type="submit" class="btn btn-primary btn-block" value="Proses"/>
+                                </form>
+     
                             </div>
                         </div>
-    
-                        <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                            5025201076
+                        <div class="flex justify-center mt-2 mb-5 sm:items-center sm:justify-between">
+                            <div class="text-center text-sm text-gray-500 sm:text-left">
+                                <div class="flex items-center">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="-mt-px w-5 h-5 text-gray-400">
+                                        <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                                    </svg>
+                                    <a href="https://raulilma.github.io" class="ml-1">
+                                        Raul Ilma Rajasa
+                                    </a>
+                                </div>
+                            </div>
+        
+                            <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                                5025201076
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+          </div>
     
 </body>
 </html>

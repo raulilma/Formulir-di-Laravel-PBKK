@@ -21,6 +21,7 @@ class TugasController extends Controller
             'required' => ':attribute ini wajib diisi!',
             'min' => ':attribute harus berisi minimal :min karakter!',
             'max' => ':attribute harus berisi maksimal :max karakter!',
+            'atk.between' => ':attribute harus berisi maksimal :between karakter!',
         ];
         
         $this->validate($request,[
